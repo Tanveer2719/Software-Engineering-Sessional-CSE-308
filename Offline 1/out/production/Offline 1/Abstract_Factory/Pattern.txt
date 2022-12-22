@@ -1,0 +1,15 @@
+########## Abstract factory Pattern #########
+-> This is also called as "Factories of factories"
+-> We create a Factory interface which is implemented by concrete factories
+-> This pattern is useful when we want to work with some objects that are mutually related to each other
+-> suppose though ball and bat are two different things but an implementation of bat and ball i.e. cricket ball and cricket bat are related to each other
+-> In this circumstances we introduce a SportsFactory interface which is implemented by the CricketFactory class
+-> From the class we can get our related package of cricket items
+
+
+####### Advantages ########
+-> Provides code for interface than implementation
+-> It can be easily expanded to accommodate more products
+-> Promotes consistency among products
+-> Isolates the concrete class
+-> Makes exchanging product family easy

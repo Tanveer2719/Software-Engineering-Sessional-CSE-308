@@ -1,0 +1,17 @@
+-> In this assignment we have used the factory design pattern.
+-> We have created an "abstract class" named as car
+-> but we decided the subclass that extends this abstract class to decide what type of car we should create
+-> then we created another "CarFactory" class to instantiate the respective subclass using the information about the location
+
+
+******  Advantages of factory method pattern *****
+1. Provides approach to code for an interface rather than a implementation
+2. It separates the actual implementation from the user
+3. It makes our code more robust and extendable
+4. Provides abstraction between implementation and client class through inheritance
+
+******** Definition of factory method pattern ********
+1. An interface is created to provide the structure of the implementation
+2. The Subclass that implements the interface decides what to build
+3. There is a factory class that decides which object to instantiate
+

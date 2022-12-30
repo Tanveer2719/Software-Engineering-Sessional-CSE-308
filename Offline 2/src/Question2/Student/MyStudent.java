@@ -1,6 +1,7 @@
 package Question2.Student;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MyStudent extends Runnable{
     String getName();
@@ -10,6 +11,6 @@ public interface MyStudent extends Runnable{
     void activator();
     void setExit();
     void setSubjectList(List<String> a );
-    void getReExamineResult(boolean x);
-    void updateMarks();
+    void getReExamineResult(boolean x,Map<String, Integer> mp);
+    void updateMarks(Map<String, Integer> mp);
 }

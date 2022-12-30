@@ -12,14 +12,13 @@ public class NewStudent implements MyStudent{
     private Controller controller;
 
     private List<String> subjects;
-    private List<Map<String, Integer>> marks = new ArrayList<>();
+    private Map<String, Integer> markSheet = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
 
     private boolean flag = false;
     private boolean exit = false;
 
-    private boolean marksImproved = false;
     private String subject;
 
     public NewStudent(Controller controller, String name, String id){
@@ -49,7 +48,7 @@ public class NewStudent implements MyStudent{
             }
 
         }
-        System.out.println("Student : " + name + " , id : " + id + " thread terminated");
+        System.out.println("\nStudent : " + name + " , id : " + id + " thread terminated");
         controller.activator();
 
     }
@@ -82,39 +81,21 @@ public class NewStudent implements MyStudent{
     }
 
     @Override
-    public void getReExamineResult(boolean value) {
+    public void getReExamineResult(boolean value, Map<String, Integer> mp) {
         if(!value){
             System.out.println("Marks of " + subject + " is not increased after Re Examine");
         }
         else{
-            Map<String, Integer> mp = new HashMap<>();
-            int x;
-            for(int i = 0; i<marks.size(); i++) {
-                if (marks.get(i).containsKey(subject)) {
-                    mp = marks.get(i);
-                    x = marks.get(i).get(subject);
-                    x = random.nextInt(x + 1, 101);
-                    marks.get(i).put(subject, x);
-                    break;
-                }
-            }
-
+            markSheet = mp;
             printHeader();
-            System.out.println("New Marks: ");
-            System.out.println("{Subject=Marks}");
-            for(Map<String , Integer> map : marks){
-                System.out.println(map.toString());
-            }
+            System.out.println("New Marks after Re Examine: ");
+            System.out.println(markSheet.toString());
         }
     }
 
     @Override
-    public void updateMarks() {
-        for(String x: subjects){
-            Map<String, Integer> mp = new HashMap<>();
-            mp.put(x, random.nextInt(40, 100));
-            marks.add(mp);
-        }
+    public void updateMarks(Map<String, Integer> mp) {
+        markSheet = mp;
     }
 
     @Override
@@ -168,13 +149,27 @@ public class NewStudent implements MyStudent{
     @Override
     public void printResult() {
         printHeader();
-        System.out.println("{Subject=Marks}");
-        for(Map<String , Integer> x : marks){
-            System.out.println(x.toString());
-        }
+        System.out.println(markSheet.toString());
+
         controller.activator();
 
     }
 
 
 }
+
+/**
+ * name, id, controller -> name of the student, his id, and an instance of the controller
+ * getName(), getId() -> getter methods
+ * flag, exit, setExit(), waiter(), activator() ---> for thread controlling purpose
+ * subjects -> List of subjects that are taught by the teachers
+ * markSheet -> individual markSheet for each student
+ * subject -> it is for the subject that is selected by the student for reExamine
+ * printHeader() -> just to print a line that contains the student name and student id
+ * setSubjectList() -> sets <subjects>
+ * reExamine() -> called by the Controller to know if the Student wants to reExamine or not
+ * getReExamineResult() -> prints the ReExamine result received from the controller
+ * updateMarks() -> It is called by the controller to update the marks after the reExamine
+ * printResult() -> just prints the individual markSheet
+ *
+ */

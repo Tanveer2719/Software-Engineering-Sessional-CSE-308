@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import static Question1.Helpers.Var.*;
 
-public class Controller implements Runnable{
+public class Controller implements MySubject{
 
     Message message;
     ChangeState changeState = new ChangeState();
@@ -45,17 +45,7 @@ public class Controller implements Runnable{
         System.out.println("Exiting controller and all other services");
     }
 
-    private synchronized void quitThreads(){
-        for(MyInterface x: premiumUsers){
-            x.setExit();
-            waiter();
-        }
-        for(MyInterface x: freeUsers){
-            x.setExit();
-            waiter();
-        }
-    }
-
+    @Override
     public synchronized void sendNotifications(){
         if(partially_down){
             System.out.println("CONTROLLER : Our server is partially down now ");
@@ -72,8 +62,40 @@ public class Controller implements Runnable{
         }
     }
 
+    @Override
     public synchronized void activator(){
         this.notify();
+    }
+
+    @Override
+    public void addPremiumUser(MyInterface x){
+        premiumUsers.add(x);
+    }
+
+    @Override
+    public void addFreeUser(MyInterface x){
+        freeUsers.add(x);
+    }
+
+    @Override
+    public void removePremiumUser(MyInterface x){
+        premiumUsers.remove(x);
+    }
+
+    @Override
+    public void removeFreeUser(MyInterface x){
+        freeUsers.remove(x);
+    }
+
+    private synchronized void quitThreads(){
+        for(MyInterface x: premiumUsers){
+            x.setExit();
+            waiter();
+        }
+        for(MyInterface x: freeUsers){
+            x.setExit();
+            waiter();
+        }
     }
 
     private synchronized void updateUsers(){
@@ -95,6 +117,7 @@ public class Controller implements Runnable{
             e.printStackTrace();
         }
     }
+
     private void update_variables(int x) {
         if(x == 1){
             Var.operational = true;
@@ -110,20 +133,6 @@ public class Controller implements Runnable{
             Var.partially_down = false;
             Var.fully_down = true;
         }
-    }
-
-    public void addPremiumUser(MyInterface x){
-        premiumUsers.add(x);
-    }
-    public void addFreeUser(MyInterface x){
-        freeUsers.add(x);
-    }
-
-    public void removePremiumUser(MyInterface x){
-        premiumUsers.remove(x);
-    }
-    public void removeFreeUser(MyInterface x){
-        freeUsers.remove(x);
     }
 }
 

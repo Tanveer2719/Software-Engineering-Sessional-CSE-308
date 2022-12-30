@@ -6,7 +6,8 @@ public class StaticVariables {
     public static boolean publishResult = false;
     public static boolean askForReExamine = false;
     public static boolean sendForReExamine = false;
-    public static boolean sendAfterReExamine = false;
-
-
 }
+
+/**
+ * For various controlling purpose and loop calls in the run() method
+ */

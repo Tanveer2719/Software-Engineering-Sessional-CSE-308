@@ -3,7 +3,10 @@ package Question2.Controller;
 import Question2.Student.MyStudent;
 import Question2.Teacher.MyTeacher;
 
- public interface Controller extends Runnable{
+import java.util.List;
+import java.util.Map;
+
+public interface Controller extends Runnable{
      void registerStudent(MyStudent s);
      void registerTeacher(MyTeacher t);
      void requestAnswerScriptsAndResult();
@@ -11,9 +14,10 @@ import Question2.Teacher.MyTeacher;
      void publishResult();
      void sendForReExamine(int i);
      void activator();
-     void replyAfterReExamine(MyStudent x);
+     void replyAfterReExamine(int x);
      void askForReExamine();
      void setIndex(int x);
-     void updateMarks();
+     void setUpdate();
+     void setMarkSheet(List<Map<String, Integer>> markSheet);
 
 }

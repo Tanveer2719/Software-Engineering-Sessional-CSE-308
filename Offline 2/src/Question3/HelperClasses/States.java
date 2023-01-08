@@ -1,4 +1,4 @@
-package Question3.StaticMethods;
+package Question3.HelperClasses;
 
 import Question3.Models.*;
 

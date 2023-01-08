@@ -1,8 +1,8 @@
 package Question3;
 
 import Question3.Models.State;
-import Question3.StaticMethods.Product;
-import Question3.StaticMethods.States;
+import Question3.HelperClasses.Product;
+import Question3.HelperClasses.States;
 
 
 public class Context {

@@ -2,7 +2,7 @@ package Question3.Models;
 
 
 import Question3.Context;
-import Question3.StaticMethods.Product;
+import Question3.HelperClasses.Product;
 
 public abstract class State {
     private static int currentMoney = 0;

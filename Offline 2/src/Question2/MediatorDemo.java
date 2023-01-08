@@ -13,21 +13,24 @@ public class MediatorDemo {
 
 
         MyTeacher t1 = new NewTeacher(controller, "Hasan Bhuiyan" , "Chemistry");
-        MyTeacher t2 = new NewTeacher(controller, "Abu Hasib" , "Bangla");
+        // MyTeacher t2 = new NewTeacher(controller, "Abu Hasib" , "Bangla");
 
         MyStudent s1 = new NewStudent(controller, "Kalam" , "1");
         MyStudent s2 = new NewStudent(controller, "Hasan", "2");
         MyStudent s3 = new NewStudent(controller, "Abir" , "3");
         MyStudent s4 = new NewStudent(controller, "Babu", "4");
+        MyStudent s5 = new NewStudent(controller, "Farhan", "5");
 
 
         controller.registerStudent(s1);
         controller.registerStudent(s2);
         controller.registerStudent(s3);
         controller.registerStudent(s4);
+        controller.registerStudent(s5);
+
 
         controller.registerTeacher(t1);
-        controller.registerTeacher(t2);
+        // controller.registerTeacher(t2);
 
         new Thread(controller).start();
 

@@ -1,6 +1,6 @@
 package Question3.Models;
 
-import Question3.StaticMethods.States;
+import Question3.HelperClasses.States;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package Question3.Models;
 
-import Question3.StaticMethods.Product;
-import Question3.StaticMethods.States;
+import Question3.HelperClasses.Product;
+import Question3.HelperClasses.States;
 
 public class GreaterMoney extends State {
 
@@ -14,8 +14,6 @@ public class GreaterMoney extends State {
     public void checkMoney() {
         System.out.println("Your money is Processing");
     }
-
-
 
     @Override
     public void dispense() {

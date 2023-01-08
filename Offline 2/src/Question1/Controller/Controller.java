@@ -28,6 +28,7 @@ public class Controller implements MySubject{
 
     @Override
     public synchronized void run() {
+        System.out.println("Currently in OPERATIONAL STATE");
         while(true) {
             System.out.println("\n***** Controller *****");
             System.out.println("Press 1 to exit...else continue");

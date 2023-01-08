@@ -44,7 +44,7 @@ public class ConcreteController implements Controller{
 
     @Override
     public void requestAnswerScriptsAndResult() {
-        System.out.println("(FROM CONTROLLER) : Exam scripts and number list are requested from teachers");
+        System.out.println("\n(FROM CONTROLLER) : Exam scripts and number list are requested from teachers");
         StaticVariables.sendScripts = true;
         for(MyTeacher x : teacherList){
             x.activator();
@@ -57,20 +57,22 @@ public class ConcreteController implements Controller{
 
     @Override
     public void sendForScrutinizing() {
+
+        Map<String, ArrayList<Integer>> probableList = probableListForScrutinizing();
+
+        for(String sub: probableList.keySet()) {
+            ArrayList<Integer> studentIdList = probableList.get(sub);
+            for(int i: studentIdList) {
+                int x = marks.get(i-1).get(sub);      // get the marks
+                int y = random.nextInt(x + 1, 101); // increase the marks
+                System.out.println("Controller : After scrutinizing the marks in "+sub+" of student_id : "+i +" has increased from "+x+" to "+y);
+                marks.get(i-1).put(sub, y);           // update the marks to the map
+            }
+        }
+
         for(MyTeacher teacher: teacherList)
             teacher.setRawMarkSheet(marks);
 
-        StaticVariables.scrutinize = true;
-        Map<String, ArrayList<Integer>> probableList = probableListForScrutinizing();
-
-        for(String sub: probableList.keySet()){
-            MyTeacher teacher = teacherList.get(subjects.indexOf(sub));
-            teacher.setStudentsId(probableList.get(sub));
-            teacher.activator();
-            waiter();
-        }
-
-        StaticVariables.scrutinize = false;
     }
 
     @Override
@@ -239,8 +241,8 @@ public class ConcreteController implements Controller{
  * registerStudent, teacher() -> adding student and teacher to the respective list
  * requestAnswerScriptsAndResult() -> Requests each registered teacher to send the scripts and the result
  * createMarkSheet() -> this method updates the "marks" arrayList with random marks for each subject for each student
- * sendForScrutinizing() -> sends a list of student id's chosen at random to the respective subject Teachers so that The teacher can update the
- *                          marks of that student at random
+ * sendForScrutinizing() -> The controller prepares a list of students randomly whose scripts are to be scrutinized and then their marks are
+                            updated after scrutinizing
  * probableListForScrutinizing() -> The method used by sendForScrutinizing() to create a mapping of "<Subject_name, List of Student_id>"
  * publishResult() -> prompts each student to print his individual mark sheet after Scrutinizing
  * setIndex() -> for setting the subject Index (subIndex)

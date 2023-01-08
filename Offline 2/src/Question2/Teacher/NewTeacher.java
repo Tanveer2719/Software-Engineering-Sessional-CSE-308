@@ -37,11 +37,8 @@ public class NewTeacher implements MyTeacher{
         }
 
         while(!exit){
-            if(StaticVariables.sendScripts){
+            if(StaticVariables.sendScripts) {
                 sendScriptsAndNumber();
-                waiter();
-            }else if(StaticVariables.scrutinize){
-                receiveScrutinizingReq();
                 waiter();
             }
             else if(StaticVariables.sendForReExamine){
@@ -74,30 +71,15 @@ public class NewTeacher implements MyTeacher{
 
     }
 
-    @Override
-    public void receiveScrutinizingReq() {
-        System.out.println("\n(Teacher) : " + name + " got scrutinizing request for Student id + : " + studentsId.toString());
-        for(int i : studentsId)
-            updateMarks(i-1);
-
-        sendAfterScrutinizing();
-    }
 
     private void updateMarks(int i) {
         Map<String, Integer> map = markSheet.get(i);
-        map = markSheet.get(i);
-        int x = markSheet.get(i).get(subject);
-        x = random.nextInt(x + 1, 101);
-        markSheet.get(i).put(subject, x);
+        int x = markSheet.get(i).get(subject);      // get the marks
+        x = random.nextInt(x + 1, 101); // increase the marks
+        markSheet.get(i).put(subject, x);           // put the marks again to the map
 
     }
 
-    @Override
-    public void sendAfterScrutinizing() {
-        controller.setMarkSheet(markSheet);
-        controller.activator();
-
-    }
 
     @Override
     public void receiveReExamineRequest() {
@@ -138,10 +120,6 @@ public class NewTeacher implements MyTeacher{
         markSheet = x;
     }
 
-    @Override
-    public void setStudentsId(List<Integer> x) {
-        this.studentsId = x;
-    }
 
     @Override
     public void setStudentIdForReExamine(int x) {
@@ -168,13 +146,10 @@ public class NewTeacher implements MyTeacher{
 /**
  * name, subject, controller -> name of the teacher, what he teaches, and an instance of the controller
  * markSheet -> The complete markSheet that will be updated during scrutinizing and reExamining
- * studentsId -> students whose scripts sent by the controller for scrutinizing
  * idForReExamine -> student id that asks for ReExamine the subject script
  * flag, exit, setExit(), waiter(), activator() ---> for thread controlling purpose
  * sendScriptsAndNumber() -> does nothing but prints a string that the marks are sent to the controller
- * receiveScrutinizingReq() -> called from the controller and the Teacher update the marks for each student in <studentId>
  * updateMarks() -> updates the mark in the <markSheet> for a student
- * sendAfterScrutinizing() -> updates the mark Sheet of the controller by calling a method and awakes the controller
  * receiveReExamineRequest() -> controller calls it to send reExamine request
  * sendAfterReExamine() -> The <markSheet> is reUpdated after the reExamine request if the probability agrees
  *                      -> updates the mark sheet of the controller and awakes controller

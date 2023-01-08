@@ -1,4 +1,4 @@
-package Question3.StaticMethods;
+package Question3.HelperClasses;
 
 public class Product {
     public static int price = 100;

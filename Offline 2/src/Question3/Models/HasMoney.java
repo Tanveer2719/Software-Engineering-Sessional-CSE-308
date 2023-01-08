@@ -1,7 +1,7 @@
 package Question3.Models;
 
-import Question3.StaticMethods.Product;
-import Question3.StaticMethods.States;
+import Question3.HelperClasses.Product;
+import Question3.HelperClasses.States;
 
 public class HasMoney extends State {
 

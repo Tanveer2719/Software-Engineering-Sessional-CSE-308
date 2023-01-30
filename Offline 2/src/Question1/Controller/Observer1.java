@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 import static Question1.Helpers.Var.*;
 
-public class ChangeState {
+public class Observer1 implements Observer {
     Scanner scanner = new Scanner(System.in);
-
-    int changeCurrentState(){
+    @Override
+    public int update(){
         System.out.println("Press to change the state: ");
 
         if(operational){

@@ -4,6 +4,7 @@ import Question1.Helpers.Message;
 import Question1.Users.MyInterface;
 import Question1.Helpers.Var;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,8 +13,8 @@ import static Question1.Helpers.Var.*;
 
 public class Controller implements MySubject{
 
-    Message message;
-    ChangeState changeState = new ChangeState();
+    private Message message;
+    private List<Observer> observerList = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
     private List<MyInterface> premiumUsers = new LinkedList<>();
     private List<MyInterface> freeUsers = new LinkedList<>();
@@ -37,11 +38,12 @@ public class Controller implements MySubject{
                 quitThreads();
                 break;
             }
-            int x = changeState.changeCurrentState();
-            update_variables(x);
-
-            // send notifications to all the premium and free users
-            sendNotifications();
+            for(Observer ob: observerList) {
+                int x = ob.update();
+                update_variables(x);
+                // send notifications to all the premium and free users
+                sendNotifications();
+            }
         }
         System.out.println("Exiting controller and all other services");
     }
@@ -81,6 +83,16 @@ public class Controller implements MySubject{
     @Override
     public void removePremiumUser(MyInterface x){
         premiumUsers.remove(x);
+    }
+
+    @Override
+    public void registerObserver(Observer ob){
+        observerList.add(ob);
+    }
+
+    @Override
+    public void removeObserver(Observer ob) {
+        observerList.remove(ob);
     }
 
     @Override

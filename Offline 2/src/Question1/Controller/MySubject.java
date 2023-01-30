@@ -9,4 +9,6 @@ public interface MySubject extends Runnable{
     void addFreeUser(MyInterface x);
     void removePremiumUser(MyInterface x);
     void removeFreeUser(MyInterface x);
+    void registerObserver(Observer ob);
+    void removeObserver(Observer ob);
 }

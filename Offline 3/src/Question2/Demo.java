@@ -12,7 +12,7 @@ public class Demo {
         Scanner scanner = new Scanner(System.in);
 
         List<String> coffeeName = new ArrayList<>(Arrays.asList("Americano", "Espresso", "Cappuccino", "Mocha"));
-        HashMap<String, Integer> order = new HashMap<>();
+        HashMap<String, Integer> order = new HashMap<>(); // <coffee name, how many>
         boolean hasOrdered = false;
 
         while(true){
@@ -43,7 +43,7 @@ public class Demo {
             System.out.println("Enter quantity: ");
             int quantity = scanner.nextInt();
             while(quantity<1){
-                System.out.println("Please order atleast one");
+                System.out.println("Please order at least one");
                 quantity = scanner.nextInt();
             }
 

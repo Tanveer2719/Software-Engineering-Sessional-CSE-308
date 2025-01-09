@@ -17,7 +17,7 @@ Design patterns are proven solutions to common problems in software design. They
 ## Design Patterns Implemented
 
 ### Creational Patterns
-In the first assignment([Offline 1](./offline_1)), I have implemented the two
+In the first assignment([Offline 1](./Offline%201)), I have implemented the two
 
 1. **Abstract Factory**
 2. **Builder**
